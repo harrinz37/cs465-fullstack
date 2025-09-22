@@ -1,0 +1,24 @@
+{
+  "trips": [
+    {
+      "name": "Gale Reef",
+      "description": "Gale Reef — Sed et augue lorem. In sit amet placerat arcu. Mauris volutpat ipsum ac justo mollis vel vestibulum orci gravida.",
+      "image": "galereef.jpg"
+    },
+    {
+      "name": "Dawson's Reef",
+      "description": "Dawson's Reef — Vestibulum sit amet porttitor odio. Nulla facilisi. Fusce at pretium felis.",
+      "image": "dawsonsreef.jpg"
+    },
+    {
+      "name": "Claire's Reef",
+      "description": "Claire's Reef — Sed consequat libero ut turpis venenatis at aliquam risus semper.",
+      "image": "clairesreef.jpg"
+    },
+    {
+      "name": "Gupta's Reef",
+      "description": "Gupta's Reef — Etiam convallis nisl eu lorem pretium sodales.",
+      "image": "guptasreef.jpg"
+    }
+  ]
+}
