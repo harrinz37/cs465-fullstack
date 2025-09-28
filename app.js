@@ -5,6 +5,11 @@ var cookieParser  = require('cookie-parser');
 var logger        = require('morgan');
 var hbs           = require('hbs');
 
+// Connect to MongoDB
+require('./app_server/models/db');
+require('./app_server/models/trips');
+
+
 // ROUTERS (note the app_server paths)
 var indexRouter   = require('./app_server/routes/index');
 var usersRouter   = require('./app_server/routes/users');

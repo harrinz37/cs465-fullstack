@@ -1,24 +1,42 @@
-{
-  "trips": [
-    {
-      "name": "Gale Reef",
-      "description": "Gale Reef — Sed et augue lorem. In sit amet placerat arcu. Mauris volutpat ipsum ac justo mollis vel vestibulum orci gravida.",
-      "image": "galereef.jpg"
-    },
-    {
-      "name": "Dawson's Reef",
-      "description": "Dawson's Reef — Vestibulum sit amet porttitor odio. Nulla facilisi. Fusce at pretium felis.",
-      "image": "dawsonsreef.jpg"
-    },
-    {
-      "name": "Claire's Reef",
-      "description": "Claire's Reef — Sed consequat libero ut turpis venenatis at aliquam risus semper.",
-      "image": "clairesreef.jpg"
-    },
-    {
-      "name": "Gupta's Reef",
-      "description": "Gupta's Reef — Etiam convallis nisl eu lorem pretium sodales.",
-      "image": "guptasreef.jpg"
-    }
-  ]
-}
+[
+  {
+    "code": "GAL001",
+    "name": "Gale Reef",
+    "length": "7 days",
+    "start": "2025-04-18T00:00:00.000Z",
+    "resort": "Lagoon Resort",
+    "perPerson": "799.00",
+    "image": "galereef.jpg",
+    "description": "Gale Reef — Sed et augue lorem. In sit amet placerat arcu."
+  },
+  {
+    "code": "DAW002",
+    "name": "Dawson's Reef",
+    "length": "5 days",
+    "start": "2025-05-10T00:00:00.000Z",
+    "resort": "Sunset Resort",
+    "perPerson": "599.00",
+    "image": "dawsonsreef.jpg",
+    "description": "Dawson's Reef — Vestibulum sit amet porttitor odio. Nulla facilisi. Fusce at pretium felis."
+  },
+  {
+    "code": "CLA003",
+    "name": "Claire's Reef",
+    "length": "8 days",
+    "start": "2025-06-21T00:00:00.000Z",
+    "resort": "Island Getaway",
+    "perPerson": "999.00",
+    "image": "clairesreef.jpg",
+    "description": "Claire's Reef — Sed consequat libero ut turpis venenatis at aliquam risus semper."
+  },
+  {
+    "code": "GUP004",
+    "name": "Gupta's Reef",
+    "length": "6 days",
+    "start": "2025-07-12T00:00:00.000Z",
+    "resort": "Coral Bay",
+    "perPerson": "699.00",
+    "image": "guptasreef.jpg",
+    "description": "Gupta's Reef — Etiam convallis nisl eu lorem pretium sodales."
+  }
+]
