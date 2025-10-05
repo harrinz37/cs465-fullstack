@@ -1,20 +1,30 @@
-const fs = require('fs');
-const path = require('path');
+// app_server/controllers/travel.js
 
-// Helper function to read trips.json
-const readTrips = () => {
-  const filePath = path.join(__dirname, '..', '..', 'data', 'trips.json');
-  const rawData = fs.readFileSync(filePath, 'utf8');
-  return JSON.parse(rawData).trips;
+const tripsEndpoint = 'http://localhost:3000/api/trips';
+const options = {
+  method: 'GET',
+  headers: { 'Accept': 'application/json' }
 };
 
-// Controller for /travel route
-const travel = (req, res) => {
-  const trips = readTrips(); // load trips from JSON file
-  res.render('travel', {
-    title: 'Travlr Getaways',
-    trips: trips
-  });
+const travel = async (req, res) => {
+  try {
+    const response = await fetch(tripsEndpoint, options);
+    if (!response.ok) {
+      return res.status(response.status).send(await response.text());
+    }
+    const trips = await response.json();
+
+    if (!Array.isArray(trips)) {
+      return res.status(500).send('API did not return an array of trips.');
+    }
+    if (trips.length === 0) {
+      return res.render('travel', { title: 'Travlr Getaways', trips: [], message: 'No trips exist in our database!' });
+    }
+
+    return res.render('travel', { title: 'Travlr Getaways', trips });
+  } catch (err) {
+    return res.status(500).send(err.message);
+  }
 };
 
 module.exports = { travel };
