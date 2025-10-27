@@ -11,13 +11,13 @@ import { BROWSER_STORAGE } from '../storage';
 })
 export class TripDataService {
 
-  // base URL for ALL API calls
+  // Base URL for all API calls
   private baseUrl = 'http://localhost:3000/api';
 
   constructor(
     private http: HttpClient,
     @Inject(BROWSER_STORAGE) private storage: Storage
-  ) { }
+  ) {}
 
   //
   // ===== AUTH HEADERS FOR PROTECTED CALLS =====
@@ -52,10 +52,10 @@ export class TripDataService {
     );
   }
 
-  // PUT update a trip (protected)
-  public updateTrip(trip: any): Observable<any> {
+  // PUT update a trip (protected) — explicit 2-argument version
+  public updateTrip(tripId: string, trip: any): Observable<any> {
     return this.http.put<any>(
-      `${this.baseUrl}/trips/${trip._id}`,
+      `${this.baseUrl}/trips/${tripId}`,
       trip,
       { headers: this.getAuthHeaders() }
     );
@@ -64,30 +64,26 @@ export class TripDataService {
   //
   // ===== AUTH METHODS =====
   //
-  // screenshot logic: both login() and register() call a shared helper
+  // Both login() and register() share the same helper below
   //
 
   // /login -> returns JWT
   public login(user: User, passwd: string): Observable<AuthResponse> {
-    // console.log('Inside TripDataService::login');
     return this.handleAuthAPICall('login', user, passwd);
   }
 
   // /register -> creates user then returns JWT
   public register(user: User, passwd: string): Observable<AuthResponse> {
-    // console.log('Inside TripDataService::register');
     return this.handleAuthAPICall('register', user, passwd);
   }
 
-  // helper used by both login() and register()
+  // shared helper for login/register
   private handleAuthAPICall(
     endpoint: string,
     user: User,
     passwd: string
   ): Observable<AuthResponse> {
-    // console.log('Inside TripDataService::handleAuthAPICall');
 
-    // matches screenshot's `formData = { name, email, password }`
     const formData = {
       name: user.name,
       email: user.email,

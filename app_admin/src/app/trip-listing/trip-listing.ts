@@ -1,27 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TripCard } from '../trip-card/trip-card';
+import { RouterLink } from '@angular/router';
 import { TripDataService } from '../services/trip-data';
-import { Trip } from '../models/trip.model';
 
 @Component({
   selector: 'app-trip-listing',
   standalone: true,
-  imports: [CommonModule, TripCard],
   templateUrl: './trip-listing.html',
-  styleUrls: ['./trip-listing.css']
+  styleUrls: ['./trip-listing.css'],
+  imports: [CommonModule, RouterLink]
 })
-export class TripListing implements OnInit {
-  trips: Trip[] = [];
-  loading = true;
-  error: string | null = null;
+export class TripListingComponent implements OnInit {
+  trips: any[] = [];
 
-  constructor(private tripService: TripDataService) {}
+  constructor(private tripDataService: TripDataService) {}
 
   ngOnInit(): void {
-    this.tripService.getTrips().subscribe({
-      next: (data) => { this.trips = data; this.loading = false; },
-      error: (err) => { this.error = 'Failed to load trips'; this.loading = false; console.error(err); }
+    this.tripDataService.getTrips().subscribe({
+      next: (data: any) => {
+        this.trips = data;
+      },
+      error: (err) => {
+        console.error('Error loading trips:', err);
+      }
     });
+  }
+
+  // Handles broken/missing images
+  onImageError(event: Event): void {
+    const element = event.target as HTMLImageElement;
+    element.style.display = 'none';
   }
 }

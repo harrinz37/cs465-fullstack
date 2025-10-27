@@ -1,13 +1,32 @@
 import { Routes } from '@angular/router';
-
-import { TripListing } from './trip-listing/trip-listing';
-import { AddTrip } from './add-trip/add-trip';
-import { EditTrip } from './edit-trip/edit-trip';
-import { LoginComponent } from './login/login';
+import { TripListingComponent } from './trip-listing/trip-listing';
+import { AddTripComponent } from './add-trip/add-trip';
+import { EditTrip } from './edit-trip/edit-trip'; 
 
 export const routes: Routes = [
-  { path: '', component: TripListing, pathMatch: 'full' },
-  { path: 'add-trip', component: AddTrip },
-  { path: 'edit-trip/:tripId', component: EditTrip },
-  { path: 'login', component: LoginComponent }
+  {
+    path: '',
+    pathMatch: 'full',
+    component: TripListingComponent,
+    title: 'Travlr Getaways Admin'
+  },
+  {
+    path: 'trips',
+    component: TripListingComponent,
+    title: 'Trip Management'
+  },
+  {
+    path: 'add',
+    component: AddTripComponent,
+    title: 'Add Trip'
+  },
+  {
+    path: 'edit-trip/:tripid', 
+    component: EditTrip,
+    title: 'Edit Trip'
+  },
+  {
+    path: '**',
+    redirectTo: ''
+  }
 ];

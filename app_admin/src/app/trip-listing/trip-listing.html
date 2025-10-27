@@ -1,10 +1,55 @@
-<h2>Available Trips</h2>
+<h2 class="page-title">Trip Listing</h2>
 
-<div *ngIf="loading" class="alert alert-info">Loading trips...</div>
-<div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+<div *ngIf="trips.length === 0" class="empty-msg">
+  <p>No trips available.</p>
+</div>
 
-<div class="row">
-  <div class="col-12 col-sm-6 col-md-4" *ngFor="let t of trips">
-    <app-trip-card [trip]="t"></app-trip-card>
+<div class="trip-grid">
+  <div *ngFor="let trip of trips" class="trip-card">
+
+    <div class="trip-card-left">
+      <img
+        class="trip-image"
+        [src]="'assets/images/' + trip.image"
+        [alt]="trip.name"
+        (error)="onImageError($event)"
+      />
+    </div>
+
+    <div class="trip-card-right">
+      <h3 class="trip-name">{{ trip.name }}</h3>
+
+      <div class="trip-line">
+        <span class="label">Resort:</span>
+        <span class="value">{{ trip.resort }}</span>
+      </div>
+
+      <div class="trip-line">
+        <span class="label">Length:</span>
+        <span class="value">{{ trip.length }}</span>
+      </div>
+
+      <div class="trip-line">
+        <span class="label">Cost per Person:</span>
+        <span class="value">\${{ trip.perPerson }}</span>
+      </div>
+
+      <div class="trip-actions">
+        <a
+          [routerLink]="['/edit-trip', trip._id]"
+          class="btn btn-edit"
+        >
+          Edit
+        </a>
+
+        <a
+          [routerLink]="['/add']"
+          class="btn btn-add"
+        >
+          Add New Trip
+        </a>
+      </div>
+    </div>
+
   </div>
 </div>

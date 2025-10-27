@@ -1,23 +1,26 @@
-<h2>Add a New Trip</h2>
+<h2>Add Trip</h2>
+
 <form [formGroup]="addForm" (ngSubmit)="onSubmit()" novalidate>
   <div class="form-group">
-    <label>Trip Code:</label>
+    <label>Code:</label>
     <input type="text" class="form-control" formControlName="code" />
   </div>
 
   <div class="form-group">
-    <label>Trip Name:</label>
+    <label>Name:</label>
     <input type="text" class="form-control" formControlName="name" />
   </div>
 
   <div class="form-group">
-    <label>Trip Length (days):</label>
+    <label>Length (nights):</label>
     <input type="number" class="form-control" formControlName="length" />
+    <small class="text-muted">Ex: 5</small>
   </div>
 
   <div class="form-group">
-    <label>Start Date:</label>
+    <label>Start:</label>
     <input type="date" class="form-control" formControlName="start" />
+    <small class="text-muted"></small>
   </div>
 
   <div class="form-group">
@@ -26,19 +29,31 @@
   </div>
 
   <div class="form-group">
-    <label>Cost per Person (USD):</label>
+    <label>Per Person (USD):</label>
     <input type="number" class="form-control" formControlName="perPerson" />
+    <small class="text-muted">Example: 799</small>
   </div>
 
   <div class="form-group">
-    <label>Image Filename:</label>
+    <label>Image Name:</label>
     <input type="text" class="form-control" formControlName="image" />
+    <small class="text-muted">Must match a file in assets/images, ex: reef1.jpg</small>
   </div>
 
   <div class="form-group">
     <label>Description:</label>
-    <textarea class="form-control" formControlName="description"></textarea>
+    <input type="text" class="form-control" formControlName="description" />
   </div>
 
-  <button type="submit" class="btn btn-primary mt-3">Save Trip</button>
+  <button type="submit" class="btn btn-primary mt-3">
+    Save
+  </button>
+
+  <button
+    type="button"
+    class="btn btn-secondary mt-3 ms-2"
+    (click)="cancel()"
+  >
+    Cancel
+  </button>
 </form>

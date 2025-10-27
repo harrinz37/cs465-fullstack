@@ -28,14 +28,14 @@
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
+
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/favicon.ico",
+              "src/assets"
             ],
+
             "styles": [
-              "src/styles.css"
+              "src/assets/css/styles.css"
             ]
           },
           "configurations": {
@@ -62,6 +62,7 @@
           },
           "defaultConfiguration": "production"
         },
+
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
@@ -74,9 +75,11 @@
           },
           "defaultConfiguration": "development"
         },
+
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
         },
+
         "test": {
           "builder": "@angular/build:karma",
           "options": {
@@ -85,14 +88,14 @@
               "zone.js/testing"
             ],
             "tsConfig": "tsconfig.spec.json",
+
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/favicon.ico",
+              "src/assets"
             ],
+
             "styles": [
-              "src/styles.css"
+              "src/assets/css/styles.css"
             ]
           }
         }

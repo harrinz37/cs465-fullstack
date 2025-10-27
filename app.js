@@ -4,15 +4,27 @@ var path          = require('path');
 var cookieParser  = require('cookie-parser');
 var logger        = require('morgan');
 var hbs           = require('hbs');
+var passport      = require('passport'); 
 
-// Connect to MongoDB (moved to app_api)
+require('dotenv').config();
+
+// ----- CONNECT MONGODB + REGISTER MODELS + CONFIGURE AUTH BEFORE ROUTERS -----
+
+// connect to MongoDB
 require('./app_api/models/db');
 
-// ROUTERS
+// register mongoose models
+require('./app_api/models/trips');
+require('./app_api/models/user');
+
+// configure passport strategies (local + jwt)
+require('./app_api/config/passport');
+
+// ----- pull in the routers -----
 var indexRouter   = require('./app_server/routes/index');
 var usersRouter   = require('./app_server/routes/users');
 var travelRouter  = require('./app_server/routes/travel');
-var apiRouter     = require('./app_api/routes/index');   
+var apiRouter     = require('./app_api/routes/index');
 
 var app = express();
 
@@ -30,11 +42,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// CORS so Angular (http://localhost:4200) can talk to API (http://localhost:3000)
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*'); // dev: allow all
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  );
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PUT, DELETE, OPTIONS'
+  );
+  next();
+});
+
+// initialize passport BEFORE routes
+app.use(passport.initialize());
+
 // routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/travel', travelRouter);
-app.use('/api', apiRouter);                               
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,23 +1,23 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule, CurrencyPipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { Trip } from '../models/trip.model';
-import { AuthenticationService } from '../services/authentication.service';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { StripHtmlPipe } from '../strip-html.pipe';
+import { ShortenPipe } from '../shorten.pipe';
 
 @Component({
   selector: 'app-trip-card',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, RouterLink],
+  imports: [CommonModule, StripHtmlPipe, ShortenPipe],
   templateUrl: './trip-card.html',
-  styleUrls: ['./trip-card.css']
+  styleUrl: './trip-card.css'
 })
-export class TripCard {
-  @Input() trip!: Trip;
+export class TripCardComponent {
+  @Input('trip') trip: any;
 
-  constructor(public authenticationService: AuthenticationService) {}
+  constructor(private router: Router) {}
 
-  onImgError(evt: Event) {
-    const img = evt.target as HTMLImageElement;
-    img.src = 'assets/images/placeholder.png';
+  editTrip(trip: any): void {
+    localStorage.setItem('tripCode', trip.code);
+    this.router.navigate(['/edit']);
   }
 }
