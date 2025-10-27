@@ -1,0 +1,28 @@
+<div class="card mb-3">
+  <img
+    class="card-img-top"
+    [src]="'assets/images/' + trip.image"
+    [alt]="trip.name"
+    (error)="onImgError($event)"
+  />
+
+  <div class="card-body">
+    <h5 class="card-title">{{ trip.name }}</h5>
+
+    <p class="card-text mb-1"><strong>Code:</strong> {{ trip.code }}</p>
+    <p class="card-text mb-1"><strong>Resort:</strong> {{ trip.resort }}</p>
+    <p class="card-text mb-1"><strong>Length:</strong> {{ trip.length }} days</p>
+    <p class="card-text mb-1"><strong>Price:</strong> {{ trip.price | currency }}</p>
+
+    <p class="card-text">{{ trip.description }}</p>
+
+    <!-- Only show the Edit button if logged in -->
+    <a
+      class="btn btn-primary"
+      [routerLink]="['/trips', trip.id, 'edit']"
+      *ngIf="authenticationService.isLoggedIn()"
+    >
+      Edit Trip
+    </a>
+  </div>
+</div>

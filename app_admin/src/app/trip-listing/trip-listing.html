@@ -1,0 +1,10 @@
+<h2>Available Trips</h2>
+
+<div *ngIf="loading" class="alert alert-info">Loading trips...</div>
+<div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+<div class="row">
+  <div class="col-12 col-sm-6 col-md-4" *ngFor="let t of trips">
+    <app-trip-card [trip]="t"></app-trip-card>
+  </div>
+</div>
